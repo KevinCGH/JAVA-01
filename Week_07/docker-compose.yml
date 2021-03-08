@@ -1,0 +1,22 @@
+version: "3.4"
+services:
+  master_node:
+    container_name: master_node
+    image: mysql:5.7
+    ports:
+      - 3316:3316
+    env_file:
+      - .env
+    volumes:
+      - ./mysql1/my.cnf:/etc/my.cnf
+      - ./mysql1/data:/var/lib/mysql
+  slave_node1:
+    container_name: slave_node1
+    image: mysql:5.7
+    ports:
+      - 3326:3326
+    env_file:
+      - .env
+    volumes:
+      - ./mysql2/my.cnf:/etc/my.cnf
+      - ./mysql2/data:/var/lib/mysql
