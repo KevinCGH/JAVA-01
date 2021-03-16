@@ -74,7 +74,7 @@ CHANGE MASTER TO
 ### 3.（必做）读写分离-数据库框架版本2.0
 > 使用 ShardingSphere-jdbc 5.0.0-alpha 实现读写分离配置
 
-配置题目2的两个主从数据库 [config-replica-query.yaml](./shardingsphere-proxy-bin/conf/config-replica-query.yaml)
+配置题目2的两个主从数据库 [config-replica-query.yaml](./config-replica-query.yaml)
 ```bash
 # 启动 ShardingSphere
 ./bin/start.sh
