@@ -1,0 +1,46 @@
+curl -X POST \
+  http://localhost:8887/scaling/job/start \
+  -H 'content-type: application/json' \
+  -d '{
+        "ruleConfiguration": {
+          "source": {
+            "type": "shardingSphereJdbc",
+            "parameter": {
+              "dataSource":"
+                  dataSources:
+                   source_db:
+                     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+                     props:
+                       jdbcUrl: jdbc:mysql://localhost:3306/demo_ds?serverTimezone=UTC&useSSL=false
+                       username: scaling
+                       password: 'scaling'
+                       connectionTimeoutMilliseconds: 30000
+                       idleTimeoutMilliseconds: 60000
+                       maxLifetimeMilliseconds: 1800000
+                       maxPoolSize: 50
+                       minPoolSize: 1
+                       maintenanceIntervalMilliseconds: 30000
+                       readOnly: false
+              ",
+              "rule":"
+                  rules:
+                  - !SHARDING
+                   tables:
+                     t_order:
+                       actualDataNodes: source_db.t_order
+              "
+            }
+          },
+          "target": {
+              "type": "jdbc",
+              "parameter": {
+                "username": "sharding",
+                "password": "sharding",
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3307/sharding_db?serverTimezone=UTC&useSSL=false"
+              }
+          }
+        },
+        "jobConfiguration":{
+          "concurrency":"3"
+        }
+      }'

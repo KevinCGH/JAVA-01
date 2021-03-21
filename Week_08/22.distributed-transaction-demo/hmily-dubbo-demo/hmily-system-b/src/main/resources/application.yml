@@ -1,0 +1,20 @@
+server:
+  port: 8089
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/hmily_demo_account?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+
+
+logging:
+  level:
+    root: error
+    org.apache.ibatis: debug
+    com.example: debug
+    io.netty: info
+mybatis:
+  type-aliases-package: com.example.hmily.dubbo.system.b.entity
+  config-location: classpath:mybatis/mybatis-config.xml
