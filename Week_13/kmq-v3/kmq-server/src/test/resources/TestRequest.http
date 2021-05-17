@@ -1,0 +1,14 @@
+GET http://localhost:9999/broker/v1/read?topic=test&offset=0
+Accept: application/json
+
+###
+POST http://localhost:9999/broker/v1/write
+Content-Type: application/json
+
+{
+  "topic": "test",
+  "content": "i love coding"
+}
+
+###
+
